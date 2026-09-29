@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>𝑀𝒜𝒩𝒟𝐼 — Modern Living</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'DM Sans',sans-serif;
+    background:#0b0c0b;
+    color:#f4f1e9;
+    overflow-x:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    padding:25px 7%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.4s;
+}
+
+nav.scrolled{
+    background:rgba(10,11,10,.75);
+    backdrop-filter:blur(18px);
+    padding:17px 7%;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo{
+    font-size:25px;
+    font-weight:700;
+    letter-spacing:7px;
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+    list-style:none;
+}
+
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    font-size:13px;
+    opacity:.75;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    opacity:1;
+    color:#d9b77b;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:100vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:0 7%;
+    overflow:hidden;
+    background:
+        linear-gradient(90deg,rgba(0,0,0,.9),rgba(0,0,0,.25)),
+        url("https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+}
+
+.hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 70% 40%,transparent 0%,rgba(0,0,0,.55) 70%);
+}
+
+.hero-content{
+    position:relative;
+    z-index:2;
+    max-width:750px;
+}
+
+.small-title{
+    color:#d9b77b;
+    letter-spacing:5px;
+    font-size:12px;
+    margin-bottom:25px;
+    animation:fadeUp 1s ease forwards;
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(65px,10vw,150px);
+    line-height:.85;
+    font-weight:500;
+    letter-spacing:-5px;
+    animation:fadeUp 1.2s ease forwards;
+}
+
+.hero h1 span{
+    color:#d9b77b;
+}
+
+.hero p{
+    margin-top:35px;
+    max-width:530px;
+    color:#ccc;
+    line-height:1.8;
+    animation:fadeUp 1.4s ease forwards;
+}
+
+.hero-buttons{
+    margin-top:35px;
+    display:flex;
+    gap:15px;
+    animation:fadeUp 1.6s ease forwards;
+}
+
+.btn{
+    padding:15px 27px;
+    text-decoration:none;
+    color:white;
+    border:1px solid rgba(255,255,255,.35);
+    transition:.35s;
+    font-size:13px;
+}
+
+.btn.primary{
+    background:#d9b77b;
+    color:#111;
+    border-color:#d9b77b;
+}
+
+.btn:hover{
+    transform:translateY(-4px);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.scroll{
+    position:absolute;
+    bottom:30px;
+    left:7%;
+    z-index:3;
+    font-size:11px;
+    letter-spacing:4px;
+    color:#aaa;
+}
+
+/* ================= GENERAL ================= */
+
+section{
+    padding:120px 7%;
+}
+
+.section-label{
+    color:#d9b77b;
+    letter-spacing:4px;
+    font-size:11px;
+    margin-bottom:20px;
+}
+
+.section-title{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(40px,5vw,75px);
+    font-weight:500;
+    line-height:1;
+}
+
+.section-title span{
+    color:#777;
+}
+
+/* ================= ABOUT ================= */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+    background:#101110;
+}
+
+.about-image{
+    height:600px;
+    background:
+        url("https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=90")
+        center/cover;
+    position:relative;
+}
+
+.about-image::before{
+    content:"";
+    position:absolute;
+    inset:20px;
+    border:1px solid rgba(255,255,255,.25);
+}
+
+.about-text p{
+    margin-top:30px;
+    color:#aaa;
+    line-height:2;
+    max-width:520px;
+}
+
+.stats{
+    display:flex;
+    gap:55px;
+    margin-top:45px;
+}
+
+.stat h3{
+    font-family:'Playfair Display',serif;
+    font-size:38px;
+    color:#d9b77b;
+}
+
+.stat p{
+    margin:0;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* ================= FEATURES ================= */
+
+.features{
+    background:#0b0c0b;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:#292b29;
+    margin-top:70px;
+}
+
+.feature{
+    padding:50px 35px;
+    background:#0b0c0b;
+    transition:.4s;
+}
+
+.feature:hover{
+    background:#151715;
+    transform:translateY(-8px);
+}
+
+.icon{
+    font-size:35px;
+    margin-bottom:30px;
+}
+
+.feature h3{
+    font-family:'Playfair Display',serif;
+    font-size:27px;
+    margin-bottom:15px;
+}
+
+.feature p{
+    color:#888;
+    line-height:1.8;
+    font-size:14px;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+    background:#101110;
+}
+
+.gallery-grid{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    grid-template-rows:300px 300px;
+    gap:12px;
+}
+
+.gallery-item{
+    overflow:hidden;
+    position:relative;
+}
+
+.gallery-item:first-child{
+    grid-row:span 2;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:1s;
+    filter:brightness(.75);
+}
+
+.gallery-item:hover img{
+    transform:scale(1.08);
+    filter:brightness(1);
+}
+
+.gallery-caption{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+    font-family:'Playfair Display',serif;
+    font-size:22px;
+}
+
+/* ================= ROOM ================= */
+
+.rooms{
+    background:#0b0c0b;
+}
+
+.room{
+    margin-top:70px;
+    display:grid;
+    grid-template-columns:1.4fr 1fr;
+    min-height:550px;
+    background:#141614;
+}
+
+.room-image{
+    background:
+        url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1400&q=90")
+        center/cover;
+}
+
+.room-info{
+    padding:70px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.room-info h2{
+    font-family:'Playfair Display',serif;
+    font-size:55px;
+    font-weight:500;
+}
+
+.room-info p{
+    color:#999;
+    line-height:1.9;
+    margin:25px 0;
+}
+
+.room-list{
+    list-style:none;
+    border-top:1px solid #333;
+}
+
+.room-list li{
+    padding:15px 0;
+    border-bottom:1px solid #333;
+    display:flex;
+    justify-content:space-between;
+    color:#bbb;
+}
+
+/* ================= LOCATION ================= */
+
+.location{
+    min-height:650px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(90deg,#0b0c0b 20%,transparent),
+        url("https://images.unsplash.com/photo-1449158743715-0a90ebb6d2d8?auto=format&fit=crop&w=2000&q=90")
+        center/cover;
+}
+
+.location-card{
+    background:rgba(12,13,12,.85);
+    backdrop-filter:blur(15px);
+    padding:60px;
+    max-width:500px;
+    border:1px solid rgba(255,255,255,.12);
+}
+
+.location-card h2{
+    font-family:'Playfair Display',serif;
+    font-size:50px;
+}
+
+.location-card p{
+    margin:25px 0;
+    color:#aaa;
+    line-height:1.8;
+}
+
+/* ================= CTA ================= */
+
+.cta{
+    text-align:center;
+    background:#151715;
+    padding:150px 7%;
+}
+
+.cta h2{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(50px,7vw,100px);
+    font-weight:500;
+}
+
+.cta p{
+    color:#999;
+    margin:25px auto 40px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    padding:45px 7%;
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #252625;
+    color:#666;
+    font-size:12px;
+}
+
+footer strong{
+    color:#d9b77b;
+    letter-spacing:4px;
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:800px){
+
+    nav{
+        padding:20px 5%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding:0 5%;
+        min-height:90vh;
+    }
+
+    .hero h1{
+        font-size:75px;
+    }
+
+    section{
+        padding:85px 5%;
+    }
+
+    .about{
+        grid-template-columns:1fr;
+        gap:40px;
+    }
+
+    .about-image{
+        height:400px;
+    }
+
+    .feature-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-grid{
+        grid-template-columns:1fr 1fr;
+        grid-template-rows:250px 250px 250px;
+    }
+
+    .gallery-item:first-child{
+        grid-row:span 1;
+        grid-column:span 2;
+    }
+
+    .room{
+        grid-template-columns:1fr;
+    }
+
+    .room-image{
+        min-height:350px;
+    }
+
+    .room-info{
+        padding:40px 30px;
+    }
+
+    .room-info h2{
+        font-size:42px;
+    }
+
+    .location{
+        padding:40px 5%;
+    }
+
+    .location-card{
+        padding:40px 30px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <div class="logo">MANDI</div>
+
+    <ul class="nav-links">
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#features">FEATURES</a></li>
+        <li><a href="#gallery">GALLERY</a></li>
+        <li><a href="#location">LOCATION</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <div class="small-title">
+            PRIVATE RESIDENCE · 2026
+        </div>
+
+        <h1>
+            Welcome<br>
+            to <span>MANDI.</span>
+        </h1>
+
+        <p>
+            Sebuah ruang hidup yang dirancang untuk menghadirkan
+            ketenangan, kenyamanan, dan karakter dalam setiap sudutnya.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#about" class="btn primary">
+                EXPLORE HOUSE
+            </a>
+
+            <a href="#gallery" class="btn">
+                VIEW GALLERY
+            </a>
+        </div>
+
+    </div>
+
+    <div class="scroll">
+        SCROLL TO EXPLORE ↓
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+
+    <div class="about-image"></div>
+
+    <div class="about-text">
+
+        <div class="section-label">
+            01 — THE HOUSE
+        </div>
+
+        <h2 class="section-title">
+            More than<br>
+            just a <span>home.</span>
+        </h2>
+
+        <p>
+            MANDI bukan sekadar bangunan. Rumah ini dirancang sebagai
+            tempat untuk pulang, beristirahat, berpikir, dan menikmati
+            waktu tanpa terburu-buru.
+        </p>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3>240</h3>
+                <p>m² Area</p>
+            </div>
+
+            <div class="stat">
+                <h3>3</h3>
+                <p>Bedrooms</p>
+            </div>
+
+            <div class="stat">
+                <h3>2</h3>
+                <p>Floors</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section class="features" id="features">
+
+    <div class="section-label">
+        02 — FEATURES
+    </div>
+
+    <h2 class="section-title">
+        Designed for<br>
+        <span>everyday living.</span>
+    </h2>
+
+    <div class="feature-grid">
+
+        <div class="feature">
+            <div class="icon">◈</div>
+            <h3>Natural Light</h3>
+            <p>
+                Bukaan besar membuat cahaya alami masuk
+                sepanjang hari dan menciptakan suasana hangat.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">⌂</div>
+            <h3>Smart Home</h3>
+            <p>
+                Sistem rumah pintar untuk lampu, keamanan,
+                temperatur dan berbagai kebutuhan rumah.
+            </p>
+        </div>
+
+        <div class="feature">
+            <div class="icon">✦</div>
+            <h3>Private Garden</h3>
+            <p>
+                Area hijau pribadi untuk menikmati pagi,
+                sore, atau sekadar duduk tanpa gangguan.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+
+    <div class="section-label">
+        03 — GALLERY
+    </div>
+
+    <h2 class="section-title">
+        Spaces with<br>
+        <span>character.</span>
+    </h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1400&q=90">
+            <div class="gallery-caption">Living Room</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=90">
+            <div class="gallery-caption">Kitchen</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=900&q=90">
+            <div class="gallery-caption">Bedroom</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=90">
+            <div class="gallery-caption">Dining</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=90">
+            <div class="gallery-caption">Exterior</div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ROOM -->
+<section class="rooms">
+
+    <div class="section-label">
+        04 — INTERIOR
+    </div>
+
+    <h2 class="section-title">
+        Your private<br>
+        <span>escape.</span>
+    </h2>
+
+    <div class="room">
+
+        <div class="room-image"></div>
+
+        <div class="room-info">
+
+            <h2>Master<br>Bedroom</h2>
+
+            <p>
+                Ruang istirahat dengan material natural,
+                pencahayaan lembut dan suasana minimalis
+                yang tenang.
+            </p>
+
+            <ul class="room-list">
+                <li>
+                    <span>King Bed</span>
+                    <span>01</span>
+                </li>
+
+                <li>
+                    <span>Private Bathroom</span>
+                    <span>02</span>
+                </li>
+
+                <li>
+                    <span>Garden View</span>
+                    <span>03</span>
+                </li>
+
+                <li>
+                    <span>Walk-in Closet</span>
+                    <span>04</span>
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LOCATION -->
+<section class="location" id="location">
+
+    <div class="location-card">
+
+        <div class="section-label">
+            05 — LOCATION
+        </div>
+
+        <h2>
+            Close to<br>
+            everything.
+        </h2>
+
+        <p>
+            MANDI berada di lingkungan yang tenang,
+            namun tetap dekat dengan berbagai kebutuhan
+            sehari-hari.
+        </p>
+
+        <a href="#" class="btn primary">
+            OPEN LOCATION
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+    <div class="section-label">
+        COME HOME
+    </div>
+
+    <h2>
+        This is<br>
+        MANDI.
+    </h2>
+
+    <p>
+        A quiet place in a noisy world.
+    </p>
+
+    <a href="#home" class="btn primary">
+        BACK TO TOP ↑
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div>
+        © 2026 MANDI RESIDENCE
+    </div>
+
+    <strong>MANDI</strong>
+
+    <div>
+        DESIGNED FOR LIVING.
+    </div>
+
+</footer>
+
+
+<script>
+
+/* NAVBAR EFFECT */
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+
+    if(window.scrollY > 50){
+        navbar.classList.add("scrolled");
+    }else{
+        navbar.classList.remove("scrolled");
+    }
+
+});
+
+
+/* REVEAL ON SCROLL */
+
+const elements = document.querySelectorAll(
+    ".feature, .gallery-item, .room, .about-text"
+);
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
+
+            }
+
+        });
+
+    },
+    {
+        threshold:.15
+    }
+);
+
+elements.forEach(el => {
+
+    el.style.opacity = "0";
+    el.style.transform = "translateY(35px)";
+    el.style.transition = "all .8s ease";
+
+    observer.observe(el);
+
+});
+
+
+/* PARALLAX HERO */
+
+window.addEventListener("scroll", () => {
+
+    const hero = document.querySelector(".hero");
+
+    let scroll = window.scrollY;
+
+    if(scroll < window.innerHeight){
+
+        hero.style.backgroundPosition =
+            `center ${50 + scroll * 0.04}%`;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
